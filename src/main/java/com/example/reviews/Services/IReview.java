@@ -12,5 +12,5 @@ public interface IReview {
 
     List<Review> getAll();
 
-    void delete(UUID id);
+    Review delete(UUID id);
 }

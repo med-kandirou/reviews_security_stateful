@@ -1,6 +1,7 @@
 package com.example.reviews.Models.Entites;
 
 import java.util.List;
+import java.util.UUID;
 
 import com.example.youreview.Models.Enums.Role;
 
@@ -24,8 +25,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
     private String username;
     private String password;
     @Enumerated(EnumType.STRING)

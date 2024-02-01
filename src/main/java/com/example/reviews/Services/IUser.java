@@ -13,5 +13,5 @@ public interface IUser {
 
     List<User> getAll();
 
-    void delete(UUID id);
+    User delete(UUID id);
 }

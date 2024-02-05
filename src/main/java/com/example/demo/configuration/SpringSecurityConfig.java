@@ -34,7 +34,9 @@ public class SpringSecurityConfig {
         return http.authorizeHttpRequests(auth -> {
                     auth.requestMatchers("/admin").hasRole("ADMIN");
                     auth.requestMatchers("/user").hasRole("USER");
-                    auth.requestMatchers("/reviews").hasAnyRole("USER","MODERATOR");
+                    auth.requestMatchers("/reviews").hasAnyRole("USER","MODERATOR","ADMIN");
+                    auth.requestMatchers("/reviews/moderator").hasAnyRole("MODERATOR","ADMIN");
+                    auth.requestMatchers("/reviews/admin").hasAnyRole("ADMIN");
                     auth.anyRequest().authenticated();
                 }).
                 csrf(AbstractHttpConfigurer::disable).

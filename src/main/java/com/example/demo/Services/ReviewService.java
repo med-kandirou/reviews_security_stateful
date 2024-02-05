@@ -19,4 +19,6 @@ public interface ReviewService {
     Review claimReview(UUID idReview);
 
     List<Review> reviewsReported();
+
+    Review updateReview(Review review);
 }

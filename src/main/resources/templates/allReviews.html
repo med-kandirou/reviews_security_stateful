@@ -13,7 +13,7 @@
                 <div class="flex items-center justify-between">
                     <span class="text-sm font-light text-gray-600 dark:text-gray-400" th:text="${review.date}"></span>
                     <div th:if="${#authorization.expression('hasRole(''ROLE_MODERATOR'')')}">
-                        <form th:action="@{'/reviews/' + ${review.id} + '/claim'}" method="post">
+                        <form th:action="@{'/reviews/moderator/' + ${review.id} + '/claim'}" method="post">
                             <button type="submit" class="bg-red-500 px-3 py-1 text-sm font-bold text-white-100 transition-colors duration-300 transform rounded cursor-pointer">Claim</button>
                         </form>
                     </div>

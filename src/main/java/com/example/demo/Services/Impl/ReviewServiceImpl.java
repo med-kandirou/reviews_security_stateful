@@ -58,6 +58,11 @@ public class ReviewServiceImpl implements ReviewService {
         return reviewRepository.save(review);
     }
 
+    @Override
+    public Review updateReview(Review review) {
+        review.setRepoted(false);
+        return reviewRepository.save(review);
+    }
 
     @Override
     public List<Review> reviewsReported() {

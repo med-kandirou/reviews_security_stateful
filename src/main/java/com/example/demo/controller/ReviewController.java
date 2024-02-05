@@ -36,6 +36,8 @@ public class ReviewController {
         return "redirect:/reviews";
     }
 
+
+
     @GetMapping("/{id}")
     public String showReviewDetails(@PathVariable UUID id, Model model) {
         Review review = reviewService.getReviewById(id);
@@ -54,14 +56,20 @@ public class ReviewController {
         return "allReviews";
     }
 
-    @GetMapping("/{id}/delete")
+    @GetMapping("/admin/{id}/delete")
     public String deleteReview(@PathVariable UUID id) {
         reviewService.deleteReview(id);
         return "redirect:/reviews";
     }
 
+    @PostMapping("/admin/update")
+    public String updateReview(@ModelAttribute Review review) {
+        reviewService.updateReview(review);
+        return "redirect:/";
+    }
 
-    @PostMapping("/{idReview}/claim")
+
+    @PostMapping("/moderator/{idReview}/claim")
     public String claimReview(@PathVariable UUID idReview) {
         reviewService.claimReview(idReview);
         return "redirect:/reviews";
@@ -69,9 +77,9 @@ public class ReviewController {
 
 
     @GetMapping("/reviewsReported")
-    public String reviewsReported() {
-        reviewService.reviewsReported();
-        return "redirect:/reviews";
+    public String reviewsReported(Model model) {
+        model.addAttribute("reviews",reviewService.reviewsReported());
+        return "redirect:/";
     }
 
 }

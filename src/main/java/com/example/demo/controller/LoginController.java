@@ -1,21 +1,20 @@
 package com.example.demo.controller;
 
-import org.springframework.web.bind.annotation.RestController;
+
+import org.springframework.stereotype.Controller;
+
 
 import org.springframework.web.bind.annotation.GetMapping;
 
 
-@RestController
+@Controller
 public class LoginController {
 
-    @GetMapping("/user")
-    public String getUser() {
-        return "Welcome, User";
+
+    @GetMapping("/")
+    public String redirectToReviews() {
+        return "allReviews";
     }
 
-    @GetMapping("/admin")
-    public String getAdmin() {
-        return "Welcome, Admin";
-    }
 }
 

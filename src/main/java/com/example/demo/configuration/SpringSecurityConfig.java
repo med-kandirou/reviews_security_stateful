@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,6 +20,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
+import org.springframework.web.servlet.view.RedirectView;
 
 @Configuration
 public class SpringSecurityConfig {
@@ -36,12 +40,18 @@ public class SpringSecurityConfig {
                 csrf(AbstractHttpConfigurer::disable).
                 formLogin(Customizer.withDefaults()).build();
     }
-//    @Bean
-//    public UserDetailsService User(){
-//        UserDetails user= User.builder().username("user").password(passwordEncoder().encode("user")).roles("USER").build();
-//        UserDetails admin= User.builder().username("admin").password(passwordEncoder().encode("admin")).roles("USER","ADMIN").build();
-//        return new InMemoryUserDetailsManager(user,admin);
-//    }
+
+
+    /*@Bean
+    public AuthenticationSuccessHandler successHandler() {
+        return (request, response, authentication) -> {
+            if (authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) {
+                response.sendRedirect("/dashboard");
+            } else {
+                response.sendRedirect("/allReviews.html");
+            }
+        };
+    }*/
 
     @Bean
     BCryptPasswordEncoder passwordEncoder(){

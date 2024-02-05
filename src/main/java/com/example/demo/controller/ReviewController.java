@@ -61,9 +61,9 @@ public class ReviewController {
     }
 
 
-    @PostMapping("/{idReview}/{idModerator}/claim")
-    public String claimReview(@PathVariable UUID idReview,@PathVariable Long idModerator) {
-        reviewService.claimReview(idReview,idModerator);
+    @PostMapping("/{idReview}/claim")
+    public String claimReview(@PathVariable UUID idReview) {
+        reviewService.claimReview(idReview);
         return "redirect:/reviews";
     }
 

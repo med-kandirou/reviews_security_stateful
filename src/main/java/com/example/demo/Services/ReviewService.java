@@ -16,5 +16,5 @@ public interface ReviewService {
 
     void deleteReview(UUID id);
 
-    Review claimReview(UUID idReview,Long idModerator);
+    Review claimReview(UUID idReview);
 }

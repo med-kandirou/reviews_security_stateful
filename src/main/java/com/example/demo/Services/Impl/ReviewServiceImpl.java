@@ -28,6 +28,7 @@ public class ReviewServiceImpl implements ReviewService {
         var user = userRepository.findByUsername(
                 SpringSecurityConfig.getSessionUser()
         ).get();
+        review.setRepoted(false);
         review.setUser(user);
         review.setDate(LocalDate.now());
         return reviewRepository.save(review);
@@ -49,7 +50,7 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
-    public Review claimReview(UUID idReview,Long idModerator) {
+    public Review claimReview(UUID idReview) {
         Review review = reviewRepository.findById(idReview)
                 .orElseThrow(() -> new ResourceNotFoundException("Review not found with id: " + idReview));
         review.setRepoted(true);

@@ -42,16 +42,6 @@ public class SpringSecurityConfig {
     }
 
 
-    /*@Bean
-    public AuthenticationSuccessHandler successHandler() {
-        return (request, response, authentication) -> {
-            if (authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) {
-                response.sendRedirect("/dashboard");
-            } else {
-                response.sendRedirect("/allReviews.html");
-            }
-        };
-    }*/
 
     @Bean
     BCryptPasswordEncoder passwordEncoder(){

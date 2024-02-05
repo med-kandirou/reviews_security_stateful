@@ -67,5 +67,12 @@ public class ReviewController {
         return "redirect:/reviews";
     }
 
+
+    @GetMapping("/reviewsReported")
+    public String reviewsReported() {
+        reviewService.reviewsReported();
+        return "redirect:/reviews";
+    }
+
 }
 

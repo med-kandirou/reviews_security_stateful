@@ -9,6 +9,7 @@ import com.example.demo.repository.DBUserRepository;
 import com.example.demo.repository.ReviewRepository;
 import org.springframework.stereotype.Service;
 import com.example.demo.configuration.SpringSecurityConfig;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -55,5 +56,11 @@ public class ReviewServiceImpl implements ReviewService {
                 .orElseThrow(() -> new ResourceNotFoundException("Review not found with id: " + idReview));
         review.setRepoted(true);
         return reviewRepository.save(review);
+    }
+
+
+    @Override
+    public List<Review> reviewsReported() {
+        return reviewRepository.findByReportedTrue();
     }
 }

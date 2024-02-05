@@ -17,4 +17,6 @@ public interface ReviewService {
     void deleteReview(UUID id);
 
     Review claimReview(UUID idReview);
+
+    List<Review> reviewsReported();
 }

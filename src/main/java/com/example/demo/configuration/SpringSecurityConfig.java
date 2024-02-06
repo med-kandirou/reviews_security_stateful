@@ -32,11 +32,9 @@ public class SpringSecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http.authorizeHttpRequests(auth -> {
-                    auth.requestMatchers("/admin").hasRole("ADMIN");
-                    auth.requestMatchers("/user").hasRole("USER");
-                    auth.requestMatchers("/reviews").hasAnyRole("USER","MODERATOR","ADMIN");
-                    auth.requestMatchers("/reviews/moderator").hasAnyRole("MODERATOR","ADMIN");
-                    auth.requestMatchers("/reviews/admin").hasAnyRole("ADMIN");
+                    auth.requestMatchers("/reviews/**").hasAnyRole("USER","MODERATOR");
+                    auth.requestMatchers("/moderator/**").hasAnyRole("MODERATOR","ADMIN");
+                    auth.requestMatchers("/admin/**").hasRole("ADMIN");
                     auth.anyRequest().authenticated();
                 }).
                 csrf(AbstractHttpConfigurer::disable).

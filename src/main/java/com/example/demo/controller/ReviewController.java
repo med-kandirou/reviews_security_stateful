@@ -14,7 +14,6 @@ import java.util.UUID;
 
 @Controller
 @RequestMapping("/reviews")
-
 public class ReviewController {
 
     private final ReviewService reviewService;
@@ -37,7 +36,6 @@ public class ReviewController {
     }
 
 
-
     @GetMapping("/{id}")
     public String showReviewDetails(@PathVariable UUID id, Model model) {
         Review review = reviewService.getReviewById(id);
@@ -56,18 +54,6 @@ public class ReviewController {
         return "allReviews";
     }
 
-    @GetMapping("/admin/{id}/delete")
-    public String deleteReview(@PathVariable UUID id) {
-        reviewService.deleteReview(id);
-        return "redirect:/reviews";
-    }
-
-    @PostMapping("/admin/update")
-    public String updateReview(@ModelAttribute Review review) {
-        reviewService.updateReview(review);
-        return "redirect:/";
-    }
-
 
     @PostMapping("/moderator/{idReview}/claim")
     public String claimReview(@PathVariable UUID idReview) {
@@ -75,12 +61,6 @@ public class ReviewController {
         return "redirect:/reviews";
     }
 
-
-    @GetMapping("/reviewsReported")
-    public String reviewsReported(Model model) {
-        model.addAttribute("reviews",reviewService.reviewsReported());
-        return "redirect:/";
-    }
 
 }
 

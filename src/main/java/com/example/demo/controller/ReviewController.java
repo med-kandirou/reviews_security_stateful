@@ -29,6 +29,12 @@ public class ReviewController {
         return "createReview";
     }
 
+    @GetMapping("{idReview}/update")
+    public String showUpdateReviewForm(@PathVariable UUID idReview, Model model) {
+        model.addAttribute("review", reviewService.getReviewById(idReview));
+        return "updateReview";
+    }
+
     @PostMapping("/create")
     public String createReview(@ModelAttribute Review review) {
         reviewService.saveReview(review);

@@ -32,7 +32,7 @@ public class SpringSecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http.authorizeHttpRequests(auth -> {
-                    auth.requestMatchers("/reviews/**").hasAnyRole("USER","MODERATOR");
+                    auth.requestMatchers("/reviews/**").hasAnyRole("USER","MODERATOR","ADMIN");
                     auth.requestMatchers("/moderator/**").hasAnyRole("MODERATOR","ADMIN");
                     auth.requestMatchers("/admin/**").hasRole("ADMIN");
                     auth.anyRequest().authenticated();

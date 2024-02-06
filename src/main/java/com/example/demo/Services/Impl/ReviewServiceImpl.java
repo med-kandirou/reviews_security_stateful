@@ -60,8 +60,11 @@ public class ReviewServiceImpl implements ReviewService {
 
     @Override
     public Review updateReview(Review review) {
-        review.setRepoted(false);
-        return reviewRepository.save(review);
+        Review r = reviewRepository.findById(review.getId())
+                .orElseThrow(() -> new ResourceNotFoundException("Review not found with id: " + review.getId()));
+        r.setMessage(review.getMessage());
+        r.setRepoted(false);
+        return reviewRepository.save(r);
     }
 
     @Override
